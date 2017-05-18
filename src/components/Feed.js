@@ -6,7 +6,6 @@ class Feed extends React.Component {
 
     constructor(props) {
         super(props);
-        console.log(this.props)
     }
 
     render() {
@@ -18,7 +17,7 @@ class Feed extends React.Component {
                 <CardHeader
                     title={feed.person.firstName+" "+feed.person.lastName}
                     subtitle={feed.date}
-                    avatar="https://placeimg.com/40/40/people/1"
+                    avatar={feed.person.avatar}
                 >
                     <FlatButton label="Otvoriť" primary={true} />
                 </CardHeader>

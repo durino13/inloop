@@ -1,4 +1,5 @@
 let state = {
+    'selected-feed': '5832e2a177801ef6b5b2bd0e',
     'feeds': [
         {
             "id": "5832e2a177801ef6b5b2bd0e",
