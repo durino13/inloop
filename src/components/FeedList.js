@@ -2,7 +2,9 @@ import React from 'react';
 import Feed from './Feed';
 import { connect } from 'react-redux';
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
+    console.log('State:')
+    console.log(state)
     return {
         feeds: state.feeds
     }
