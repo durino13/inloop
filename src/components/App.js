@@ -9,8 +9,8 @@ import _ from 'lodash';
 const mapStateToProps = (state, ownProps) => {
 
     return {
-        selected_feed: state.selected_feed,
-        feed: _.find(state.feeds, function(feed) { return feed.id === state.selected_feed })
+        selected_feed_id: state.selected_feed_id,
+        feed: _.find(state.feeds, function(feed) { return feed.id === state.selected_feed_id })
     }
 };
 
@@ -24,11 +24,11 @@ class App extends React.Component {
     render() {
 
         const { feed } = this.props;
-        const { selected_feed } = this.props;
+        const { selected_feed_id } = this.props;
 
         let selectedFeedComponent = null;
 
-        if (selected_feed !== null) {
+        if (selected_feed_id !== null) {
             selectedFeedComponent =
                 <div>
                     <h1>Detail</h1>

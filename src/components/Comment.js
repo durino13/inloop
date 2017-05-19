@@ -18,7 +18,7 @@ class Comment extends React.Component {
 
     render() {
         return <ListItem
-                    leftAvatar={<Avatar src="images/ok-128.jpg" />}
+                    leftAvatar={<Avatar src="http://lorempixel.com/g/512/512/" />}
                     primaryText="Comment header ..."
                     secondaryText={
                         <p>

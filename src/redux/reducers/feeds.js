@@ -3,10 +3,8 @@ import initState from '../state';
 const feeds = (state = initState, action) => {
     switch(action.type) {
         case 'FEED_SELECT':
-            console.log(action)
-            console.log(state)
             return Object.assign({}, state, {
-                selected_feed: action.selected_feed
+                selected_feed_id: action.selected_feed_id
             })
         }
     return state;
