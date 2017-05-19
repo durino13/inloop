@@ -42,6 +42,20 @@ $spaceamounts: (5, 10, 15, 20, 25, 30, 35, 40);
     }
   }
 }
+@mixin generate-padding() {
+  @each $space in $spaceamounts {
+    .p-#{$space} {
+      padding: #{$space}px;
+    }
+  }
+}
+@mixin generate-margin() {
+  @each $space in $spaceamounts {
+    .m-#{$space} {
+      margin: #{$space}px;
+    }
+  }
+}
 
 @include generate-margin-bottom();
 @include generate-margin-right();
@@ -49,3 +63,5 @@ $spaceamounts: (5, 10, 15, 20, 25, 30, 35, 40);
 @include generate-margin-left();
 @include generate-padding-bottom();
 @include generate-padding-top();
+@include generate-padding();
+@include generate-margin();

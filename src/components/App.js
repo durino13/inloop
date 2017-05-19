@@ -46,7 +46,7 @@ class App extends React.Component {
 
                         <AppToolbar></AppToolbar>
 
-                        <div className="container mt-20">
+                        <div className="container mt-20 mb-20">
                             <div className="row">
 
                                 <div className="col-md-6">
