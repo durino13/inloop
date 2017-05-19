@@ -22,3 +22,5 @@ const render = () => ReactDOM.render(
 
 render()
 store.subscribe(render)
+
+export default store;

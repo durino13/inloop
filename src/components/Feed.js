@@ -1,11 +1,17 @@
 import React from 'react';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
+import store from '../index';
 
 class Feed extends React.Component {
 
     constructor(props) {
         super(props);
+
+    }
+
+    onFeedSelect(feed) {
+        store.dispatch({ type: 'FEED_SELECT', selected_feed: feed.id })
     }
 
     render() {
@@ -19,7 +25,7 @@ class Feed extends React.Component {
                     subtitle={feed.date}
                     avatar={feed.person.avatar}
                 >
-                    <FlatButton label="Otvoriť" primary={true} />
+                    <FlatButton onClick={() => this.onFeedSelect(feed)} label="Detail" primary={true} />
                 </CardHeader>
                 <CardText>
                     {feed.text}
