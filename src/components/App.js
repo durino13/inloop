@@ -17,10 +17,6 @@ const mapStateToProps = (state, ownProps) => {
 @connect(mapStateToProps)
 class App extends React.Component {
 
-    constructor(props) {
-        super(props);
-    }
-
     render() {
 
         const { feed } = this.props;

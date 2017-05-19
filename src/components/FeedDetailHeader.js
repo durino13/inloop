@@ -4,10 +4,6 @@ import Badge from 'material-ui/Badge';
 
 class FeedDetailHeader extends React.Component {
 
-    constructor(props) {
-        super(props);
-    }
-
     render() {
 
         const { feed } = this.props;

@@ -10,13 +10,6 @@ import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui
 
 export default class AppToolbar extends React.Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            value: 3,
-        };
-    }
-
     handleChange = (event, index, value) => this.setState({value});
 
     render() {

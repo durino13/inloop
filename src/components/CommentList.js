@@ -13,10 +13,6 @@ const mapStateToProps = (state, ownProps) => {
 @connect(mapStateToProps)
 class CommentList extends React.Component {
 
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return <List>
                 <Subheader>Comments</Subheader>

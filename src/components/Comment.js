@@ -12,10 +12,6 @@ const mapStateToProps = (state, ownProps) => {
 @connect(mapStateToProps)
 class Comment extends React.Component {
 
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return <ListItem
                     leftAvatar={<Avatar src="http://lorempixel.com/g/512/512/" />}

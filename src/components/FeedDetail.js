@@ -7,10 +7,6 @@ import CommentList from './CommentList';
 
 class FeedDetail extends React.Component {
 
-    constructor(props) {
-        super(props);
-    }
-
     render() {
 
         const { feed } = this.props;
