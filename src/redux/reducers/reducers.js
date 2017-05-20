@@ -1,6 +1,7 @@
 import initState from '../state';
 
 const feeds = (state = initState, action) => {
+
     switch(action.type) {
 
         case 'FEED_SELECT':
@@ -14,14 +15,14 @@ const feeds = (state = initState, action) => {
             });
 
         case 'FEEDS_RECEIVED':
-            console.log(action)
             return Object.assign({}, state, {
                 feeds: action.feeds,
                 loading_feeds: action.loading_feeds
             });
+        default:
+            return state;
     }
 
-    return state;
 }
 
 export default feeds

@@ -1,9 +1,8 @@
 import React from 'react';
-import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
+import {Card, CardText} from 'material-ui/Card';
 import Divider from 'material-ui/Divider';
 import FeedDetailHeader from './FeedDetailHeader';
 import CommentForm from './CommentForm';
-import CommentList from './CommentList';
 
 class FeedDetail extends React.Component {
 
@@ -19,7 +18,7 @@ class FeedDetail extends React.Component {
                 <CommentForm></CommentForm>
             </CardText>
             <Divider/>
-            <CommentList></CommentList>
+            {/*<CommentList></CommentList>*/}
         </Card>
         );
 

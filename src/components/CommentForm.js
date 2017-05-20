@@ -1,17 +1,8 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import Paper from 'material-ui/Paper';
-import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 
-const mapStateToProps = (state, ownProps) => {
-    // return {
-    //     feeds: state.feeds
-    // }
-};
-
-// @connect(mapStateToProps)
 class CommentForm extends React.Component {
 
     constructor(props) {

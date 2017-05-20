@@ -1,17 +1,17 @@
 import _ from 'lodash';
 import React from 'react';
-import store from '../index';
 import FeedList from './FeedList';
 import FeedDetail from './FeedDetail';
 import AppToolbar from './AppToolbar';
 import { connect } from 'react-redux';
-import { feedsRequested, feedsReceived, fetchFeeds }  from '../redux/actions/actions';
+import { feedsRequested, fetchFeeds }  from '../redux/actions/actions';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import injectTapEventPlugin from 'react-tap-event-plugin';
 
 const mapStateToProps = (state) => {
     return {
         selected_feed_id: state.selected_feed_id,
-        feed: _.find(state.feeds, function(feed) { return feed.id === state.selected_feed_id }),
+        feed: _.find(state.feeds, function(feed) { return feed._id === state.selected_feed_id }),
         loading_feeds: state.loading_feeds
     }
 };
@@ -24,6 +24,7 @@ class App extends React.Component {
         const { dispatch } = this.props;
         dispatch(feedsRequested());
         dispatch(fetchFeeds());
+        injectTapEventPlugin();
     }
 
     render() {
@@ -71,7 +72,9 @@ class App extends React.Component {
                                 </div>
 
                                 <div className="col-md-6">
-                                    {selectedFeedComponent}
+                                    <div style={{position: 'static'}}>
+                                        {selectedFeedComponent}
+                                    </div>
                                 </div>
 
                             </div>
