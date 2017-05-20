@@ -24,7 +24,8 @@ const feeds = (state = initState, action) => {
             });
         case 'COMMENT_DELETED_SUCCESSFULLY':
             return Object.assign({}, state, {
-                delete_dialog_open: action.delete_dialog_open
+                delete_dialog_open: action.delete_dialog_open,
+                comments: action.comments
             });
         case 'TOGGLE_SNACKBAR':
             return Object.assign({}, state, {

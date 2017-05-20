@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
-import { commentSent, submitComment } from '../../redux/actions/actions';
+import { commentSent, submitComment, toggleSnackbar } from '../../redux/actions/actions';
 import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 
 const mapStateToProps = (state) => {
@@ -44,7 +44,9 @@ class CommentForm extends React.Component {
         };
 
         dispatch(commentSent());
-        dispatch(submitComment(selected_feed._id, data));
+        dispatch(submitComment(selected_feed._id, data)).then(() => {
+            dispatch(toggleSnackbar(true, 'New comment has been added successfully.'));
+        });
 
     }
 
