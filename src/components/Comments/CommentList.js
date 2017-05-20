@@ -8,10 +8,12 @@ class CommentList extends React.Component {
 
     render() {
 
+        let { comments } = this.props;
+
         return <List>
-                <Subheader>Comments</Subheader>
+                <Subheader>{comments.length} comment(s)</Subheader>
                 {
-                    this.props.comments.map(function(comment, index) {
+                    comments.map(function(comment, index) {
                         return <Comment key={index} comment={comment}></Comment>
                     })
                 }
