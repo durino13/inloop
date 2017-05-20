@@ -21,7 +21,7 @@ class Feed extends React.Component {
     getCardClass = () => {
         const { selectedFeed } = this.props;
         if (selectedFeed) {
-            return selectedFeed === this.feed._id ? "mt-40 active-feed" : "mt-40";
+            return selectedFeed._id === this.feed._id ? "mt-40 active-feed" : "mt-40";
         } else {
             return "mt-40";
         }
