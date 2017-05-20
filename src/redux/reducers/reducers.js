@@ -26,6 +26,11 @@ const feeds = (state = initState, action) => {
             return Object.assign({}, state, {
                 delete_dialog_open: action.delete_dialog_open
             });
+        case 'TOGGLE_SNACKBAR':
+            return Object.assign({}, state, {
+                display_snackbar: action.display_snackbar,
+                snackbar_message: action.snackbar_message
+            });
         default:
             return state;
     }

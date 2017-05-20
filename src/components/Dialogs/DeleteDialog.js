@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
-import { showDeleteDialog, deleteComment, commentDeletionStarted } from '../../redux/actions/actions';
+import { showDeleteDialog, deleteComment, commentDeletionStarted, toggleSnackbar } from '../../redux/actions/actions';
 
 const mapStateToProps = (state) => {
     return {
@@ -22,6 +22,7 @@ export default class DeleteDialog extends React.Component {
         dispatch(commentDeletionStarted());
         dispatch(deleteComment(feedId, commentId)).then(() => {
             dispatch(showDeleteDialog(false));
+            dispatch(toggleSnackbar(true, 'Comment has been successfully deleted'));
         });
     };
 

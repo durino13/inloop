@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import Comment from './Comment';
 import List from 'material-ui/List';
 import Subheader from 'material-ui/Subheader';

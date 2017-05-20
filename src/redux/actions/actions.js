@@ -10,6 +10,7 @@ export const COMMENT_SUBMITTED_SUCCESSFULLY = 'COMMENT_SUBMITTED_SUCCESSFULLY';
 export const COMMENT_DELETION_STARTED = 'COMMENT_DELETION_STARTED';
 export const COMMENT_DELETED_SUCCESSFULLY = 'COMMENT_DELETED_SUCCESSFULLY';
 export const TOGGLE_DIALOG = 'TOGGLE_DIALOG';
+export const TOGGLE_SNACKBAR = 'TOGGLE_SNACKBAR';
 
 //----------------------------------------------------------
 // Load feeds service
@@ -152,5 +153,17 @@ export function showDeleteDialog(isVisible) {
     return {
         type: TOGGLE_DIALOG,
         delete_dialog_open: isVisible
+    }
+}
+
+//----------------------------------------------------------
+// Snackbars
+//----------------------------------------------------------
+
+export function toggleSnackbar(isVisible, message = '') {
+    return {
+        type: TOGGLE_SNACKBAR,
+        display_snackbar: isVisible,
+        snackbar_message: message
     }
 }

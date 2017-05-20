@@ -1,12 +1,14 @@
 import _ from 'lodash';
 import React from 'react';
-import FeedList from './Feeds/FeedList';
-import FeedDetail from './Feeds/FeedDetail';
 import AppToolbar from './AppToolbar';
 import { connect } from 'react-redux';
-import { feedsRequested, fetchFeeds }  from '../redux/actions/actions';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import FeedList from './Feeds/FeedList';
+import FeedDetail from './Feeds/FeedDetail';
+import SnackbarPanel from './Snackbars/SnackbarPanel';
 import injectTapEventPlugin from 'react-tap-event-plugin';
+import { feedsRequested, fetchFeeds, toggleSnackbar }  from '../redux/actions/actions';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
 
 const mapStateToProps = (state) => {
     return {
@@ -18,7 +20,9 @@ const mapStateToProps = (state) => {
                 return false;
             }
         }),
-        loading_feeds: state.loading_feeds
+        loading_feeds: state.loading_feeds,
+        display_snackbar: state.display_snackbar,
+        snackbar_message: state.snackbar_message ? state.snackbar_message : ''
     }
 };
 
@@ -35,7 +39,13 @@ class App extends React.Component {
 
     render() {
 
-        const { selected_feed, loading_feeds } = this.props;
+        const {
+            selected_feed,
+            loading_feeds,
+            display_snackbar,
+            snackbar_message,
+            dispatch
+        } = this.props;
 
         // TODO Move those conditions into separate functions ..
 
@@ -84,6 +94,11 @@ class App extends React.Component {
 
                             </div>
                         </div>
+
+                        <SnackbarPanel
+                            display_snackbar={display_snackbar}
+                            snackbar_message={snackbar_message}
+                        />
 
                     </div>
 
