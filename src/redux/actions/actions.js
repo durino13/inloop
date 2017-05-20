@@ -7,6 +7,8 @@ export const FEED_RECEIVED = 'FEED_RECEIVED';
 export const FEED_REQUESTED = 'FEED_REQUESTED';
 export const COMMENT_SENT = 'COMMENT_SENT';
 export const COMMENT_SUBMITTED_SUCCESSFULLY = 'COMMENT_SUBMITTED_SUCCESSFULLY';
+export const COMMENT_DELETION_STARTED = 'COMMENT_DELETION_STARTED';
+export const COMMENT_DELETED_SUCCESSFULLY = 'COMMENT_DELETED_SUCCESSFULLY';
 
 //----------------------------------------------------------
 // Load feeds service
@@ -73,6 +75,8 @@ export function fetchFeed(feedId) {
 // Comments
 //----------------------------------------------------------
 
+// Submitting comments
+
 export function commentSent() {
     return {
         type: COMMENT_SENT,
@@ -89,16 +93,47 @@ export function commentSubmittedSuccessfully(comments) {
 }
 
 export function submitComment(feedId, data) {
+
     return function(dispatch) {
 
         let feed_url = config.feed_service_url + '/' + feedId + '/comments';
 
+        // TODO Handle the failure
         axios.post(feed_url, data).then((response) => {
             dispatch(commentSubmittedSuccessfully(response.data))
         });
+
     }
 }
 
-export function deleteComment(commentId) {
+// Deleting comments
+
+export function commentDeletionStarted() {
+    return {
+        type: COMMENT_DELETION_STARTED,
+        deleting_comment: true
+    }
+}
+
+export function commentDeletedSuccessfully(comments) {
+    return {
+        type: COMMENT_DELETED_SUCCESSFULLY,
+        deleting_comment: false,
+        comments: comments
+    }
+}
+
+export function deleteComment(feedId, commentId) {
+
+    return function(dispatch) {
+
+        let feed_url = config.feed_service_url + '/' + feedId + '/comments/' + commentId;
+
+        // TODO Handle the failure
+        axios.delete(feed_url).then((response) => {
+            dispatch(commentDeletedSuccessfully(response.data));
+        });
+
+    }
 
 }

@@ -45,7 +45,7 @@ class CommentForm extends React.Component {
 
         dispatch(commentSent());
         dispatch(submitComment(selected_feed._id, data));
-        
+
     }
 
     render() {
