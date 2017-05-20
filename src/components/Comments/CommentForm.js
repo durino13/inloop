@@ -1,8 +1,17 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
+import { commentSent, submitComment } from '../../redux/actions/actions';
 import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 
+const mapStateToProps = (state) => {
+    return {
+        selected_feed: state.selected_feed,
+    }
+};
+
+@connect(mapStateToProps)
 class CommentForm extends React.Component {
 
     constructor(props) {
@@ -23,7 +32,20 @@ class CommentForm extends React.Component {
     }
 
     handleSubmit = () => {
-        return true;
+
+        let { dispatch, selected_feed } = this.props;
+
+        let data = {
+            'text': this.state.comment,
+            'person': {
+                'firstName': this.state.first_name,
+                'lastName': this.state.last_name
+            }
+        };
+
+        dispatch(commentSent());
+        dispatch(submitComment(selected_feed._id, data));
+        
     }
 
     render() {
