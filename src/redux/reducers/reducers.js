@@ -18,6 +18,14 @@ const feeds = (state = initState, action) => {
             return Object.assign({}, state, {
                 selected_feed: action.selected_feed
             });
+        case 'TOGGLE_DIALOG':
+            return Object.assign({}, state, {
+                delete_dialog_open: action.delete_dialog_open
+            });
+        case 'COMMENT_DELETED_SUCCESSFULLY':
+            return Object.assign({}, state, {
+                delete_dialog_open: action.delete_dialog_open
+            });
         default:
             return state;
     }

@@ -1,14 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { commentDeletionStarted, deleteComment } from '../../redux/actions/actions';
 import Avatar from 'material-ui/Avatar';
 import MenuItem from 'material-ui/MenuItem';
 import IconMenu from 'material-ui/IconMenu';
 import IconButton from 'material-ui/IconButton';
 import ListItem from 'material-ui/List/ListItem';
+import DeleteDialog from '../Dialogs/DeleteDialog';
 import Delete from 'material-ui/svg-icons/action/delete';
 import { grey400, darkBlack } from 'material-ui/styles/colors';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
+import { showDeleteDialog } from '../../redux/actions/actions';
 
 const mapStateToProps = (state) => {
     return {
@@ -20,11 +21,8 @@ const mapStateToProps = (state) => {
 class Comment extends React.Component {
 
     deleteComment = (feedId, commentId) => {
-
         const { dispatch } = this.props;
-
-        dispatch(commentDeletionStarted());
-        dispatch(deleteComment(feedId, commentId));
+        dispatch(showDeleteDialog(true));
     }
 
     render() {
@@ -61,6 +59,7 @@ class Comment extends React.Component {
                     </p>
                 }
                 secondaryTextLines={2}
+                disabled={true}
             />
         } else {
             commentComponent = <ListItem
@@ -69,9 +68,11 @@ class Comment extends React.Component {
             />
         }
 
-        return <span>
+        // TODO comment ID is nested under person ??
+        return<div>
             { commentComponent }
-        </span>
+            <DeleteDialog feedId={selected_feed._id} commentId={comment.person.id}></DeleteDialog>
+        </div>
     }
 
 }

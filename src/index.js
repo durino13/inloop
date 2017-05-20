@@ -5,21 +5,16 @@ import App from './components/App';
 import { Provider } from 'react-redux'
 import thunkMiddleware from 'redux-thunk'
 import reducer from './redux/reducers/reducers';
-import { createStore, applyMiddleware } from 'redux'
+import { createStore, applyMiddleware, compose } from 'redux'
 
 // Css
 import './scss/styles.scss';
 
-let preloadedServerState = {}
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(reducer, composeEnhancers(
+    applyMiddleware(thunkMiddleware)
+));
 
-// App entry point
-const store = createStore(
-    reducer,
-    preloadedServerState,
-    applyMiddleware(
-        thunkMiddleware
-    )
-);
 const rootEl = document.getElementById('app');
 
 const render = () => ReactDOM.render(

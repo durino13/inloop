@@ -9,6 +9,7 @@ export const COMMENT_SENT = 'COMMENT_SENT';
 export const COMMENT_SUBMITTED_SUCCESSFULLY = 'COMMENT_SUBMITTED_SUCCESSFULLY';
 export const COMMENT_DELETION_STARTED = 'COMMENT_DELETION_STARTED';
 export const COMMENT_DELETED_SUCCESSFULLY = 'COMMENT_DELETED_SUCCESSFULLY';
+export const TOGGLE_DIALOG = 'TOGGLE_DIALOG';
 
 //----------------------------------------------------------
 // Load feeds service
@@ -33,12 +34,17 @@ export function feedsReceived(feeds) {
 
 // Async action retrieving feeds
 export function fetchFeeds() {
-    return function(dispatch) {
+
+    return dispatch => {
+
         let feed_url = config.feed_service_url;
-        axios.get(feed_url).then((response) => {
+
+        return axios.get(feed_url).then((response) => {
             dispatch(feedsReceived(response.data))
         });
+
     }
+
 }
 
 //----------------------------------------------------------
@@ -63,9 +69,9 @@ export function feedReceived(feed) {
 
 // Async action
 export function fetchFeed(feedId) {
-    return function(dispatch) {
+    return dispatch => {
         let feed_url = config.feed_service_url + '/' + feedId;
-        axios.get(feed_url).then((response) => {
+        return axios.get(feed_url).then((response) => {
             dispatch(feedReceived(response.data))
         });
     }
@@ -94,12 +100,12 @@ export function commentSubmittedSuccessfully(comments) {
 
 export function submitComment(feedId, data) {
 
-    return function(dispatch) {
+    return dispatch => {
 
         let feed_url = config.feed_service_url + '/' + feedId + '/comments';
 
         // TODO Handle the failure
-        axios.post(feed_url, data).then((response) => {
+        return axios.post(feed_url, data).then((response) => {
             dispatch(commentSubmittedSuccessfully(response.data))
         });
 
@@ -125,15 +131,26 @@ export function commentDeletedSuccessfully(comments) {
 
 export function deleteComment(feedId, commentId) {
 
-    return function(dispatch) {
+    return dispatch => {
 
         let feed_url = config.feed_service_url + '/' + feedId + '/comments/' + commentId;
 
         // TODO Handle the failure
-        axios.delete(feed_url).then((response) => {
+        return axios.delete(feed_url).then((response) => {
             dispatch(commentDeletedSuccessfully(response.data));
         });
 
     }
 
+}
+
+//----------------------------------------------------------
+// Dialogs
+//----------------------------------------------------------
+
+export function showDeleteDialog(isVisible) {
+    return {
+        type: TOGGLE_DIALOG,
+        delete_dialog_open: isVisible
+    }
 }

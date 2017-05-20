@@ -50,7 +50,7 @@ class App extends React.Component {
 
         // Do not render, until we have data prepared
         // TODO refactor this condition ..
-        if ( loading_feeds !== undefined && loading_feeds !== true && selected_feed !== undefined) {
+        if ( loading_feeds !== undefined && loading_feeds !== true && selected_feed !== undefined && selected_feed !== null) {
             selectedFeedComponent =
                 <div>
                     <h1>Detail</h1>

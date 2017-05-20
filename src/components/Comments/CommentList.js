@@ -14,7 +14,7 @@ class CommentList extends React.Component {
                 <Subheader>{comments.length} comment(s)</Subheader>
                 {
                     comments.map(function(comment, index) {
-                        return <Comment key={index} comment={comment}></Comment>
+                        return <Comment className="mt-5 mb-5" key={index} comment={comment}></Comment>
                     })
                 }
             </List>
