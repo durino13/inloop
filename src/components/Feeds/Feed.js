@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import FlatButton from 'material-ui/FlatButton';
 import {Card, CardHeader, CardText} from 'material-ui/Card';
-import { feedRequested, fetchFeed }  from '../redux/actions/actions';
+import { feedRequested, fetchFeed }  from '../../redux/actions/actions';
 
 const mapStateToProps = (state) => {
     return {

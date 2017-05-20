@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import React from 'react';
-import FeedList from './FeedList';
-import FeedDetail from './FeedDetail';
+import FeedList from './Feeds/FeedList';
+import FeedDetail from './Feeds/FeedDetail';
 import AppToolbar from './AppToolbar';
 import { connect } from 'react-redux';
 import { feedsRequested, fetchFeeds }  from '../redux/actions/actions';
@@ -50,7 +50,7 @@ class App extends React.Component {
 
         // Do not render, until we have data prepared
         // TODO refactor this condition ..
-        if ( loading_feeds !== undefined && loading_feeds !== true && selected_feed !== null) {
+        if ( loading_feeds !== undefined && loading_feeds !== true && selected_feed !== undefined) {
             selectedFeedComponent =
                 <div>
                     <h1>Detail</h1>
