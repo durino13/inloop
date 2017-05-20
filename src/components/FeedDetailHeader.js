@@ -16,7 +16,7 @@ class FeedDetailHeader extends React.Component {
                 <div>
                     <Badge
                         className="mt-10"
-                        badgeContent={10}
+                        badgeContent={feed.likesCount}
                         secondary={true}
                         badgeStyle={{top: 0, right: 0}}
                     >
@@ -24,7 +24,7 @@ class FeedDetailHeader extends React.Component {
                     </Badge>
                     <Badge
                         className="mt-10"
-                        badgeContent={4}
+                        badgeContent={feed.commentsCount}
                         secondary={true}
                         badgeStyle={{top: 0, right: 0}}
                     >

@@ -4,11 +4,6 @@ const feeds = (state = initState, action) => {
 
     switch(action.type) {
 
-        case 'FEED_SELECT':
-            return Object.assign({}, state, {
-                selected_feed_id: action.selected_feed_id
-            });
-
         case 'FEEDS_REQUESTED':
             return Object.assign({}, state, {
                 loading_feeds: action.loading_feeds
@@ -18,6 +13,10 @@ const feeds = (state = initState, action) => {
             return Object.assign({}, state, {
                 feeds: action.feeds,
                 loading_feeds: action.loading_feeds
+            });
+        case 'FEED_RECEIVED':
+            return Object.assign({}, state, {
+                selected_feed: action.selected_feed
             });
         default:
             return state;

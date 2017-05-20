@@ -10,8 +10,14 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 
 const mapStateToProps = (state) => {
     return {
-        selected_feed_id: state.selected_feed_id,
-        feed: _.find(state.feeds, function(feed) { return feed._id === state.selected_feed_id }),
+        selected_feed: state.selected_feed,
+        feed: _.find(state.feeds, function(feed) {
+            if (state.selected_feed) {
+                return feed._id === state.selected_feed._id;
+            } else {
+                return false;
+            }
+        }),
         loading_feeds: state.loading_feeds
     }
 };
@@ -29,8 +35,7 @@ class App extends React.Component {
 
     render() {
 
-        const { feed } = this.props;
-        const { selected_feed_id, loading_feeds } = this.props;
+        const { selected_feed, loading_feeds } = this.props;
 
         // TODO Move those conditions into separate functions ..
 
@@ -45,12 +50,12 @@ class App extends React.Component {
 
         // Do not render, until we have data prepared
         // TODO refactor this condition ..
-        if ( loading_feeds !== undefined && loading_feeds !== true && selected_feed_id !== null) {
+        if ( loading_feeds !== undefined && loading_feeds !== true && selected_feed !== null) {
             selectedFeedComponent =
                 <div>
                     <h1>Detail</h1>
                     <FeedDetail
-                        feed={feed}
+                        feed={selected_feed}
                     />
                 </div>
         }

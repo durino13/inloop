@@ -1,12 +1,12 @@
 import React from 'react';
-import store from '../index';
 import { connect } from 'react-redux';
 import FlatButton from 'material-ui/FlatButton';
 import {Card, CardHeader, CardText} from 'material-ui/Card';
+import { feedRequested, fetchFeed }  from '../redux/actions/actions';
 
 const mapStateToProps = (state) => {
     return {
-        selectedFeed: state.selected_feed_id ? state.selected_feed_id : ''
+        selectedFeed: state.selected_feed ? state.selected_feed : ''
     }
 };
 
@@ -28,7 +28,9 @@ class Feed extends React.Component {
     }
 
     onFeedSelect = (feed) => {
-        store.dispatch({ type: 'FEED_SELECT',   selected_feed_id: feed._id })
+        const { dispatch } = this.props;
+        dispatch(feedRequested());
+        dispatch(fetchFeed(feed._id));
     }
 
     render() {

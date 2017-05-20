@@ -1,10 +1,5 @@
 import React from 'react';
-import IconMenu from 'material-ui/IconMenu';
-import IconButton from 'material-ui/IconButton';
-import NavigationExpandMoreIcon from 'material-ui/svg-icons/navigation/expand-more';
-import MenuItem from 'material-ui/MenuItem';
-import RaisedButton from 'material-ui/RaisedButton';
-import {Toolbar, ToolbarGroup, ToolbarTitle} from 'material-ui/Toolbar';
+import AppBar from 'material-ui/AppBar';
 
 export default class AppToolbar extends React.Component {
 
@@ -12,27 +7,10 @@ export default class AppToolbar extends React.Component {
 
     render() {
         return (
-            <Toolbar>
-                <ToolbarGroup firstChild={true}>
-                    <ToolbarTitle
-                        className="ml-20"
-                    text="Inloop presentation application">
-                    </ToolbarTitle>
-                </ToolbarGroup>
-                <ToolbarGroup>
-                    <RaisedButton label="Hire me" primary={true} />
-                    <IconMenu
-                        iconButtonElement={
-                            <IconButton touch={true}>
-                                <NavigationExpandMoreIcon />
-                            </IconButton>
-                        }
-                    >
-                        <MenuItem primaryText="Download" />
-                        <MenuItem primaryText="More Info" />
-                    </IconMenu>
-                </ToolbarGroup>
-            </Toolbar>
+        <AppBar
+            title="Inloop presentation by @durino13"
+            iconClassNameRight="muidocs-icon-navigation-expand-more"
+        />
         );
     }
 }
