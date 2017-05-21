@@ -16,6 +16,10 @@ class CommentForm extends React.Component {
 
     constructor(props) {
         super(props);
+        this.clearForm();
+    }
+
+    clearForm = () => {
         this.state = {
             first_name: '',
             last_name: '',
@@ -49,6 +53,7 @@ class CommentForm extends React.Component {
         }).catch(() => {
             dispatch(toggleSnackbar(true, 'An error occured, while trying to add the comment. Try again later.'))
         });
+        this.clearForm();
 
     }
 
