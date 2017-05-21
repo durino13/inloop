@@ -46,6 +46,8 @@ class CommentForm extends React.Component {
         dispatch(commentSent());
         dispatch(submitComment(selected_feed._id, data)).then(() => {
             dispatch(toggleSnackbar(true, 'New comment has been added successfully.'));
+        }).catch(() => {
+            dispatch(toggleSnackbar(true, 'An error occured, while trying to add the comment. Try again later.'))
         });
 
     }

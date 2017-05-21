@@ -6,7 +6,8 @@ import { showDeleteDialog, deleteComment, commentDeletionStarted, toggleSnackbar
 
 const mapStateToProps = (state) => {
     return {
-        delete_dialog_open: state.delete_dialog_open
+        delete_dialog_open: state.delete_dialog_open,
+        dialog_data: state.dialog_data
     }
 };
 
@@ -18,11 +19,13 @@ export default class DeleteDialog extends React.Component {
     };
 
     handleYes = () => {
-        let { dispatch, feedId, commentId } = this.props;
+        let { dispatch, dialog_data } = this.props;
         dispatch(commentDeletionStarted());
-        dispatch(deleteComment(feedId, commentId)).then(() => {
+        dispatch(deleteComment(dialog_data.data.feedId, dialog_data.data.commentId)).then(() => {
             dispatch(showDeleteDialog(false));
             dispatch(toggleSnackbar(true, 'Comment has been successfully deleted'));
+        }).catch(() => {
+            toggleSnackbar(true, 'An error occured, while trying to delete the comment. Try again later.')
         });
     };
 

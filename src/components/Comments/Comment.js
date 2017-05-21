@@ -22,7 +22,7 @@ class Comment extends React.Component {
 
     deleteComment = (feedId, commentId) => {
         const { dispatch } = this.props;
-        dispatch(showDeleteDialog(true));
+        dispatch(showDeleteDialog(true, { 'feedId': feedId, 'commentId': commentId}));
     }
 
     render() {
@@ -71,7 +71,7 @@ class Comment extends React.Component {
         // TODO comment ID is nested under person ??
         return<div>
             { commentComponent }
-            <DeleteDialog feedId={selected_feed._id} commentId={comment.person.id}></DeleteDialog>
+            <DeleteDialog></DeleteDialog>
         </div>
     }
 

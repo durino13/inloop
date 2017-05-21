@@ -91,22 +91,21 @@ export function commentSent() {
     }
 }
 
-export function commentSubmittedSuccessfully(comments) {
+export function commentSubmittedSuccessfully(allFeedComments) {
     return {
         type: COMMENT_SUBMITTED_SUCCESSFULLY,
-        comments: comments,
+        comments: allFeedComments,
         comment_sending: false
     }
 }
 
-export function submitComment(feedId, data) {
+export function submitComment(feedId, newComment) {
 
     return dispatch => {
 
         let feed_url = config.feed_service_url + '/' + feedId + '/comments';
 
-        // TODO Handle the failure
-        return axios.post(feed_url, data).then((response) => {
+        return axios.post(feed_url, newComment).then((response) => {
             dispatch(commentSubmittedSuccessfully(response.data))
         });
 
@@ -122,11 +121,11 @@ export function commentDeletionStarted() {
     }
 }
 
-export function commentDeletedSuccessfully(comments) {
+export function commentDeletedSuccessfully(commentId) {
     return {
         type: COMMENT_DELETED_SUCCESSFULLY,
         deleting_comment: false,
-        comments: comments
+        comment_id_to_delete: commentId
     }
 }
 
@@ -136,9 +135,8 @@ export function deleteComment(feedId, commentId) {
 
         let feed_url = config.feed_service_url + '/' + feedId + '/comments/' + commentId;
 
-        // TODO Handle the failure
         return axios.delete(feed_url).then((response) => {
-            dispatch(commentDeletedSuccessfully(response.data));
+            dispatch(commentDeletedSuccessfully(commentId));
         });
 
     }
@@ -149,10 +147,13 @@ export function deleteComment(feedId, commentId) {
 // Dialogs
 //----------------------------------------------------------
 
-export function showDeleteDialog(isVisible) {
+export function showDeleteDialog(isVisible, data = null) {
     return {
         type: TOGGLE_DIALOG,
-        delete_dialog_open: isVisible
+        delete_dialog_open: isVisible,
+        dialog_data: {
+            data: data
+        }
     }
 }
 

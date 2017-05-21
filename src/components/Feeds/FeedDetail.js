@@ -18,7 +18,9 @@ class FeedDetail extends React.Component {
 
     render() {
 
-        const { feed, comments } = this.props;
+        const { selected_feed, comments } = this.props;
+
+        console.log(comments)
 
         let commentList = null;
 
@@ -30,7 +32,7 @@ class FeedDetail extends React.Component {
 
         return (
         <Card className="mt-40">
-            <FeedDetailHeader feed={feed}></FeedDetailHeader>
+            <FeedDetailHeader feed={selected_feed}></FeedDetailHeader>
             <Divider/>
             <CardText>
                 <CommentForm></CommentForm>

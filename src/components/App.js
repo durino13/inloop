@@ -49,7 +49,7 @@ class App extends React.Component {
 
         // TODO Move those conditions into separate functions ..
 
-        let selectedFeedComponent = null;
+        let feedDetail = null;
         let feedListComponent = null;
 
         // Do not render, until we have data prepared
@@ -61,11 +61,11 @@ class App extends React.Component {
         // Do not render, until we have data prepared
         // TODO refactor this condition ..
         if ( loading_feeds !== undefined && loading_feeds !== true && selected_feed !== undefined && selected_feed !== null) {
-            selectedFeedComponent =
+            feedDetail =
                 <div>
                     <h1>Detail</h1>
                     <FeedDetail
-                        feed={selected_feed}
+                        selected_feed={selected_feed}
                     />
                 </div>
         }
@@ -88,7 +88,7 @@ class App extends React.Component {
 
                                 <div className="col-md-6">
                                     <div style={{position: 'static'}}>
-                                        {selectedFeedComponent}
+                                        {feedDetail}
                                     </div>
                                 </div>
 

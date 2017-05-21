@@ -25,28 +25,6 @@ let state = {
             "text": "Exercitation tempor aute sunt consequat commodo duis consequat pariatur dolore ea cillum dolore. Proident in nulla est cupidatat et anim. Sit cillum est id magna qui laborum ipsum elit labore ad fugiat. Sint commodo dolor do occaecat mollit ad et ex laborum adipisicing est duis enim consequat. Pariatur et qui enim exercitation esse ex est irure adipisicing mollit.\r\n",
             "date": "Fri Jan 15 2016 08:27:21 GMT+0100 (CET)"
         }
-    ],
-    'comments': [
-        {
-            "text": "Lorem Ipsum dolor sit amet...",
-            "date": "Wed Aug 03 2016 09:05:28 GMT+0200 (CEST)",
-            "person": {
-                "id": "5e717e3a832e2719215a16f9",
-                "firstName": "John",
-                "lastName": "Doe",
-                "avatar": "http://lorempixel.com/g/512/512/"
-            }
-        },
-        {
-            "text": "Cillum reprehenderit sint laboris incididunt anim exercitation culpa laborum amet eu.",
-            "date": "Wed Aug 03 2016 09:01:48 GMT+0200 (CEST)",
-            "person": {
-                "id": "5832e2a16f5e717e3a719219",
-                "firstName": "Virgie",
-                "lastName": "Stokes",
-                "avatar": "http://lorempixel.com/g/512/512/"
-            }
-        }
     ]
 };
 
