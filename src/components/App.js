@@ -6,8 +6,9 @@ import FeedList from './Feeds/FeedList';
 import FeedDetail from './Feeds/FeedDetail';
 import SnackbarPanel from './Snackbars/SnackbarPanel';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import { feedsRequested, fetchFeeds, toggleSnackbar }  from '../redux/actions/actions';
+import RefreshIndicator from 'material-ui/RefreshIndicator';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import { feedsRequested, fetchFeeds }  from '../redux/actions/actions';
 
 
 const mapStateToProps = (state) => {
@@ -20,6 +21,7 @@ const mapStateToProps = (state) => {
                 return false;
             }
         }),
+        loading_feed_detail: state.loading_feed_detail,
         loading_feeds: state.loading_feeds,
         display_snackbar: state.display_snackbar,
         snackbar_message: state.snackbar_message ? state.snackbar_message : ''
@@ -37,38 +39,87 @@ class App extends React.Component {
         injectTapEventPlugin();
     }
 
-    render() {
+    /**
+     * Function creates a list of feeds. Until loaded, loader component is displayed ..
+     * @returns {XML}
+     */
+    createFeedListComponent() {
 
-        const {
-            selected_feed,
-            loading_feeds,
-            display_snackbar,
-            snackbar_message,
-            dispatch
-        } = this.props;
+        const { loading_feeds } = this.props;
 
-        // TODO Move those conditions into separate functions ..
-
-        let feedDetail = null;
-        let feedListComponent = null;
+        const style = {
+            container: {
+                position: 'relative',
+            },
+            refresh: {
+                display: 'inline-block',
+                position: 'relative',
+            },
+        };
 
         // Do not render, until we have data prepared
         if (loading_feeds !== undefined && loading_feeds !== true) {
-            feedListComponent =
-                <FeedList />
+            return <FeedList />
+        } else {
+            return <RefreshIndicator
+                size={40}
+                left={40}
+                top={30}
+                status="loading"
+                style={style.refresh}
+            />
         }
+    }
+
+    /**
+     * Function  builds the FeedDetail component. If not ready yet, it creates a loader
+     * @returns {XML}
+     */
+    createFeedDetailComponent() {
+
+        const {
+            selected_feed,
+            loading_feed_detail
+        } = this.props;
+
+        const style = {
+            container: {
+                position: 'relative',
+            },
+            refresh: {
+                display: 'inline-block',
+                position: 'relative',
+            },
+        };
 
         // Do not render, until we have data prepared
-        // TODO refactor this condition ..
-        if ( loading_feeds !== undefined && loading_feeds !== true && selected_feed !== undefined && selected_feed !== null) {
-            feedDetail =
-                <div>
+        if (loading_feed_detail !== undefined && loading_feed_detail === false) {
+            return <div>
                     <h1>Detail</h1>
                     <FeedDetail
                         selected_feed={selected_feed}
                     />
                 </div>
+        } else {
+            if (loading_feed_detail === true) {
+                return <RefreshIndicator
+                    size={40}
+                    left={40}
+                    top={30}
+                    status="loading"
+                    style={style.refresh}
+                />
+            }
         }
+
+    }
+
+    render() {
+
+        let { display_snackbar, snackbar_message } = this.props;
+
+        let feedListComponent = this.createFeedListComponent();
+        let feedDetailComponent = this.createFeedDetailComponent();
 
         return (
 
@@ -87,9 +138,7 @@ class App extends React.Component {
                                 </div>
 
                                 <div className="col-md-6">
-                                    <div style={{position: 'static'}}>
-                                        {feedDetail}
-                                    </div>
+                                    {feedDetailComponent}
                                 </div>
 
                             </div>

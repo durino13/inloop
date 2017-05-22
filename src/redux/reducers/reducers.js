@@ -16,8 +16,14 @@ const feeds = (state = initState, action) => {
                 loading_feeds: action.loading_feeds
             });
 
+        case 'FEED_REQUESTED':
+            return Object.assign({}, state, {
+                loading_feed_detail: action.loading_feed_detail
+            });
+
         case 'FEED_RECEIVED':
             return Object.assign({}, state, {
+                loading_feed_detail: action.loading_feed_detail,
                 selected_feed: action.selected_feed
             });
 
