@@ -41,7 +41,7 @@ class FeedDetail extends React.Component {
                     </div>
                 </Tab>
                 <Tab label="Comments" >
-                    <div style={{overflow: 'scroll'}}>
+                    <div id="style-4" style={{'max-height': '100vh', 'overflow-y': 'scroll'}}>
                         <CardText>
                             <CommentForm></CommentForm>
                         </CardText>
