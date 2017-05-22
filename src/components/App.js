@@ -62,13 +62,15 @@ class App extends React.Component {
         if (loading_feeds !== undefined && loading_feeds !== true) {
             return <FeedList />
         } else {
-            return <RefreshIndicator
-                size={40}
-                left={40}
-                top={30}
-                status="loading"
-                style={style.refresh}
-            />
+            return <div className="flex-center">
+                <RefreshIndicator
+                    size={40}
+                    left={0}
+                    top={60}
+                    status="loading"
+                    style={style.refresh}
+                />
+                </div>
         }
     }
 
@@ -100,13 +102,15 @@ class App extends React.Component {
                     />
         } else {
             if (loading_feed_detail === true) {
-                return <RefreshIndicator
-                    size={40}
-                    left={40}
-                    top={30}
-                    status="loading"
-                    style={style.refresh}
-                />
+                return <div className="flex-center">
+                    <RefreshIndicator
+                        size={40}
+                        left={0}
+                        top={60}
+                        status="loading"
+                        style={style.refresh}
+                    />
+                </div>
             }
         }
 
