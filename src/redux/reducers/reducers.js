@@ -59,7 +59,8 @@ const feeds = (state = initState, action) => {
         case 'COMMENT_SUBMITTED_SUCCESSFULLY':
 
             let state_modification_1 =  Object.assign({}, state, {
-                delete_dialog_open: action.delete_dialog_open
+                delete_dialog_open: action.delete_dialog_open,
+                comment_sending: action.comment_sending
             });
 
             let modify_selected_feed_comments_1 = Object.assign({}, state.selected_feed, {
@@ -76,6 +77,12 @@ const feeds = (state = initState, action) => {
                 display_snackbar: action.display_snackbar,
                 snackbar_message: action.snackbar_message
             });
+
+        case 'COMMENT_SENT':
+            return Object.assign({}, state, {
+                comment_sending: action.comment_sending
+            });
+
         default:
             return state;
     }

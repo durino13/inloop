@@ -57,6 +57,14 @@ class CommentForm extends React.Component {
 
     }
 
+    getButtonLabel() {
+
+        let { comment_sending } = this.props;
+
+        return !comment_sending ? 'Add comment' : 'Sending comment ...';
+
+    }
+
     render() {
         return<Paper>
             <ValidatorForm
@@ -97,7 +105,7 @@ class CommentForm extends React.Component {
                         value={this.state.comment}
                     />
                     <br /><br />
-                    <RaisedButton primary={true} type="submit" label="Add comment" fullWidth={true} />
+                    <RaisedButton primary={true} type="submit" label={this.getButtonLabel()} fullWidth={true} />
                     <br /><br/>
                 </div>
             </ValidatorForm>
