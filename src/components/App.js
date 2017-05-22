@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import React from 'react';
+import Sticky from 'react-sticky-el';
 import AppToolbar from './AppToolbar';
 import { connect } from 'react-redux';
 import FeedList from './Feeds/FeedList';
@@ -94,12 +95,9 @@ class App extends React.Component {
 
         // Do not render, until we have data prepared
         if (loading_feed_detail !== undefined && loading_feed_detail === false) {
-            return <div>
-                    <h1>Detail</h1>
-                    <FeedDetail
+            return <FeedDetail
                         selected_feed={selected_feed}
                     />
-                </div>
         } else {
             if (loading_feed_detail === true) {
                 return <RefreshIndicator
@@ -138,7 +136,10 @@ class App extends React.Component {
                                 </div>
 
                                 <div className="col-md-6">
-                                    {feedDetailComponent}
+                                    <h1>Detail</h1>
+                                    <Sticky topOffset={-30}>
+                                        {feedDetailComponent}
+                                    </Sticky>
                                 </div>
 
                             </div>
