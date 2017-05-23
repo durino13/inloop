@@ -8,6 +8,8 @@ var InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
 var WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin');
 var getClientEnvironment = require('./env');
 var paths = require('./paths');
+let ExtractTextPlugin = require('extract-text-webpack-plugin');
+let extractCSS = new ExtractTextPlugin('styles.css');
 
 
 
@@ -162,9 +164,9 @@ module.exports = {
       // ** STOP ** Are you adding a new loader?
       // Remember to add the new extension(s) to the "url" loader exclusion list.
       {
-        test: /\.scss$/,
+        test: /\.scss$/i,
         // include: paths.appSrc,
-        loaders: ["style", "css", "sass"]
+        loader: extractCSS.extract(['css','sass'])
       },
     ]
   },
@@ -206,7 +208,8 @@ module.exports = {
     // to restart the development server for Webpack to discover it. This plugin
     // makes the discovery automatic so you don't have to restart.
     // See https://github.com/facebookincubator/create-react-app/issues/186
-    new WatchMissingNodeModulesPlugin(paths.appNodeModules)
+    new WatchMissingNodeModulesPlugin(paths.appNodeModules),
+    extractCSS
   ],
   // Some libraries import Node modules but don't use them in the browser.
   // Tell Webpack to provide empty mocks for them so importing them works.
