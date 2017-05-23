@@ -1,8 +1,9 @@
 import React from 'react';
+import moment from 'moment';
 import { connect } from 'react-redux';
 import FlatButton from 'material-ui/FlatButton';
-import {Card, CardHeader, CardText} from 'material-ui/Card';
 import { feedRequested, fetchFeed }  from '../../redux/actions/actions';
+import {Card, CardHeader, CardText, CardActions} from 'material-ui/Card';
 
 const mapStateToProps = (state) => {
     return {
@@ -27,6 +28,11 @@ class Feed extends React.Component {
         }
     }
 
+    convertDate() {
+        const { selectedFeed } = this.props;
+        return moment(selectedFeed.date).format("dddd, MMMM Do YYYY, h:mm a");
+    }
+
     onFeedSelect = (feed) => {
         const { dispatch } = this.props;
         dispatch(feedRequested());
@@ -41,14 +47,26 @@ class Feed extends React.Component {
             <Card className={this.getCardClass()}>
                 <CardHeader
                     title={feed.person.firstName+" "+feed.person.lastName}
-                    subtitle={feed.date}
+                    subtitle={this.convertDate()}
                     avatar={feed.person.avatar}
                 >
-                    <FlatButton onClick={() => this.onFeedSelect(feed)} label="Detail" primary={true} />
+                    <FlatButton
+                        onClick={() => this.onFeedSelect(feed)}
+                        label="Detail"
+                        primary={true}
+                        className="visible-md visible-lg"
+                    />
                 </CardHeader>
                 <CardText>
                     {feed.text}
                 </CardText>
+                <CardActions>
+                    <FlatButton onClick={() => this.onFeedSelect(feed)}
+                                label="Detail"
+                                primary={true}
+                                className="visible-sm visible-xs"
+                    />
+                </CardActions>
             </Card>
         );
     }
