@@ -54,7 +54,7 @@ class Feed extends React.Component {
                         onClick={() => this.onFeedSelect(feed)}
                         label="Detail"
                         primary={true}
-                        className="visible-md visible-lg"
+                        className="visible-md-inline visible-lg-inline pull-right"
                     />
                 </CardHeader>
                 <CardText>
@@ -64,7 +64,7 @@ class Feed extends React.Component {
                     <FlatButton onClick={() => this.onFeedSelect(feed)}
                                 label="Detail"
                                 primary={true}
-                                className="visible-sm visible-xs"
+                                className="visible-sm-inline visible-xs-inline"
                     />
                 </CardActions>
             </Card>
